@@ -23,7 +23,6 @@ class MAPCPMostCommentedPosts extends WP_Widget {
 		$q  = "SELECT COUNT(*) as comment_count, comment_post_ID ";
 		$q .= "FROM {$wpdb->prefix}comments ";
 		$q .= "WHERE comment_approved = 1 ";
-		$q .= "AND comment_post_ID != 297 ";
 		$q .= "GROUP BY comment_post_ID ";
 		$q .= "ORDER BY comment_count ";
 		$q .= "DESC LIMIT %d ";
