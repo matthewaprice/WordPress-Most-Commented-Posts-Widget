@@ -3,7 +3,7 @@
 Plugin Name: Matt's Most Commented Posts
 Plugin URI: http://www.matthewaprice.com/
 Description: Drives Most Commented Posts
-Version: 1.0
+Version: 1.1
 Author: Matthew Price
 Author URI: http://www.matthewaprice.com
 License: GPL2
@@ -58,14 +58,9 @@ class MAPCPMostCommentedPosts extends WP_Widget {
 						elseif ( ($comment->comment_count <= $tier_1) && ($comment->comment_count >= $tier_2) ) { $title_class = "hot"; }
 						elseif ( ($comment->comment_count < $tier_2) && ($comment->comment_count >= $tier_3) ) { $title_class = "medium"; }
 						elseif ($comment->comment_count < $tier_3) { $title_class = "mild"; }	
-						query_posts("p={$comment->comment_post_ID}");		
-						if ( have_posts() ) : while ( have_posts() ) : the_post();
-							$post_title = get_the_title();
-							$permalink = get_permalink($comment->comment_post_ID);
-							echo "<li class=\"" . $title_class . "\"><a href=\"" . $permalink . "\">" . $post_title . "</a></li>";
-						endwhile;
-						endif;	
-						wp_reset_query();							
+						$post_title = get_the_title($comment->comment_post_ID);
+						$permalink = get_permalink($comment->comment_post_ID);
+						echo "<li class=\"" . $title_class . "\"><a href=\"" . $permalink . "\">" . $post_title . "</a></li>";							
 					}			
 					echo "</ul>";														
 			?>
